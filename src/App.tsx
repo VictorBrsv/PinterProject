@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import elbrusLogo from './assets/elbrus.svg';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 function App(): JSX.Element {
@@ -25,6 +26,10 @@ function App(): JSX.Element {
         <button type="button" onClick={() => setCount((prev) => prev + 1)}>
           count is {count}
         </button>
+        <div style={{display: 'flex', gap: 15}}>
+        <Link to={'about'}>about</Link>
+        <Link to={'main'}>main</Link>
+        </div>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
