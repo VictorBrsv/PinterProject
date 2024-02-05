@@ -20,8 +20,8 @@ function App(): JSX.Element {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h2>Elbrus Bootcamp</h2>
-      <h1>Vite + React</h1>
+      <h2>PINTER</h2>
+      <h1>Vite + React + Pinter</h1>
       <div className="card">
         <button type="button" onClick={() => setCount((prev) => prev + 1)}>
           count is {count}
