@@ -5,6 +5,23 @@
   text-align: center;
 }
 
+.button-container {
+  display: flex;
+  gap: 15px;
+}
+
+.button {
+  padding: 10px;
+  font-size: 18px;
+  text-decoration: none;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;
