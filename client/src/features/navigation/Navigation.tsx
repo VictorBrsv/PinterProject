@@ -15,6 +15,16 @@ export default function Navigation(): JSX.Element {
     <>
       <div className="nav__container">
         <ul className="nav__menu">
+          <li className="nav__item">
+            <NavLink className="nav__button" to="/about">
+              О нас
+            </NavLink>
+          </li>
+          <li className="nav__item">
+            <NavLink className="nav__button" to="/parties">
+              Мероприятия
+            </NavLink>
+          </li>
           {!user ? (
             <>
               <li className="nav__item">

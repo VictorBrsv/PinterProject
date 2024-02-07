@@ -7,12 +7,11 @@ export default function Registration(): JSX.Element {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [cpassword, setCpassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const onHandleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    void dispatch(registration({ name, email, password, cpassword }));
+    void dispatch(registration({ name, email, password }));
     navigate("/");
   };
   return (
@@ -56,19 +55,6 @@ export default function Registration(): JSX.Element {
             className="form-control"
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Confirm password
-          </label>
-          <input
-            value={cpassword}
-            onChange={(e) => setCpassword(e.target.value)}
-            name="cpassword"
-            type="password"
-            className="form-control"
-          />
-        </div>
-        {/* <h2 style={{ color: "red" }} className="error" /> */}
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

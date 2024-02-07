@@ -3,7 +3,7 @@ import type { User } from "../features/users/types/User";
 import { AuthAuthoriza, AuthReg } from "../features/auth/types/AuthState";
 
 export const registrationAxios = async (value: AuthReg): Promise<User> => {
-  const { data }: { data: User } = await axios.post("/api/auth/registration", {
+  const { data }: { data: User } = await axios.post("/api/auth/sign-up", {
     data: value,
   });
   return data;
@@ -12,7 +12,7 @@ export const registrationAxios = async (value: AuthReg): Promise<User> => {
 export const authorizationAxios = async (
   value: AuthAuthoriza,
 ): Promise<User> => {
-  const { data }: { data: User } = await axios.post("/api/auth/authorization", {
+  const { data }: { data: User } = await axios.post("/api/auth/sign-in", {
     data: value,
   });
   return data;
@@ -25,7 +25,7 @@ export const checkAuthAxios = async (): Promise<User> => {
 
 export const logOutAxios = async (): Promise<void> => {
   try {
-    await axios.post("/api/auth/logout");
+    await axios.get("/api/auth/logout");
   } catch (error) {
     console.log(error);
   }

@@ -45,9 +45,9 @@ const authSlice = createSlice({
       .addCase(authorization.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      .addCase(checkAuth.pending, (state) => {
-        state.pending = true;
-      })
+      // .addCase(checkAuth.pending, (state) => {
+      //   state.pending = true;
+      // })
       .addCase(checkAuth.fulfilled, (state, action) => {
         state.pending = false;
         state.user = action.payload;
