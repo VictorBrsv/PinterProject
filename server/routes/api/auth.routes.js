@@ -17,7 +17,7 @@ router.post("/sign-up", async (req, res) => {
       return;
     }
     const hash = await bcrypt.hash(password, 10);
-    userInDb = await User.create({ name, email, password: hash });
+    userInDb = await User.create({ name, email, password: hash, mode: 'user' });
 
     if (userInDb) {
       const { accessToken, refreshToken } = generateTokens({
