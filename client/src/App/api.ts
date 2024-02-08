@@ -3,10 +3,13 @@ import type { User } from "../features/users/types/User";
 import { AuthAuthoriza, AuthReg } from "../features/auth/types/AuthState";
 
 export const registrationAxios = async (value: AuthReg): Promise<User> => {
-  const { data }: { data: User } = await axios.post("/api/auth/sign-up", {
+  const { data }: { data: User} = await axios.post("/api/auth/sign-up", {
     data: value,
   });
-  return data;
+  if (!data.message) {
+    return data;
+  }
+  throw new Error(data.message);
 };
 
 export const authorizationAxios = async (
@@ -15,7 +18,10 @@ export const authorizationAxios = async (
   const { data }: { data: User } = await axios.post("/api/auth/sign-in", {
     data: value,
   });
-  return data;
+  if (!data.message) {
+    return data;
+  }
+  throw new Error(data.message);
 };
 
 export const checkAuthAxios = async (): Promise<User> => {
