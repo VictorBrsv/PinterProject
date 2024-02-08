@@ -5,12 +5,12 @@ const cookieParser = require("cookie-parser");
 const verifyAccessToken = require("../middleware/verifyJWT");
 
 const serverConfig = (app) => {
-  // app.use(
-  //   cors({
-  //     origin: "http://localhost:5173",
-  //     credentials: true,
-  //   }),
-  // );
+  app.use(
+    cors({
+      origin: "https://pinter.fun",
+      credentials: true,
+    }),
+  );
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use(express.static(path.join(__dirname, "..", "public")));
