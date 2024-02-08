@@ -13,8 +13,8 @@ import Party from "../features/parties/components/Party";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
-  axios.defaults.baseURL = "https://pinter.fun";
-  // axios.defaults.withCredentials = true;
+  axios.defaults.baseURL = "http://localhost:4000";
+  axios.defaults.withCredentials = true;
 
   useEffect(() => {
     dispatch(checkAuth());

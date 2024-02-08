@@ -26,7 +26,7 @@ export const authorizationAxios = async (
 
 export const checkAuthAxios = async (): Promise<User> => {
   const { data }: { data: User } = await axios.get("/api/auth/check");
-  return data;
+  return data.user;
 };
 
 export const logOutAxios = async (): Promise<void> => {
