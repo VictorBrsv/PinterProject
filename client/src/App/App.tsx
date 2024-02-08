@@ -14,7 +14,7 @@ import Party from "../features/parties/components/Party";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
-  axios.defaults.baseURL = "https://pinter.fun";
+  axios.defaults.baseURL = "http://localhost:3000";
   const { pending } = useAppSelector((store) => store.auth);
   axios.defaults.withCredentials = true;
 

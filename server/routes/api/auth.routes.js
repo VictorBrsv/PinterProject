@@ -6,7 +6,7 @@ const cookiesConfig = require("../../config/cookiesConfig");
 
 router.post("/sign-up", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body.data;
     let userInDb = await User.findOne({ where: { email } });
     if (!name || !email || !password) {
       res.json({ message: "Заполните все поля" });
@@ -17,7 +17,7 @@ router.post("/sign-up", async (req, res) => {
       return;
     }
     const hash = await bcrypt.hash(password, 10);
-    userInDb = await User.create({ name, email, password: hash, mode: 'user' });
+    userInDb = await User.create({ name, email, password: hash, mode: "user" });
 
     if (userInDb) {
       const { accessToken, refreshToken } = generateTokens({
@@ -88,7 +88,7 @@ router.get("/logout", (req, res) => {
     res
       .clearCookie(cookiesConfig.refresh)
       .clearCookie(cookiesConfig.access)
-      .json({ message: "success" })
+      .json({ message: "success" });
   }
 });
 
