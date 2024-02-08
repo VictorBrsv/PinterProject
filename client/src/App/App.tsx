@@ -14,7 +14,7 @@ import Party from "../features/parties/components/Party";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
-  axios.defaults.baseURL = "http://185.209.115.124";
+  axios.defaults.baseURL = "https://185.209.115.124";
   const { pending } = useAppSelector((store) => store.auth);
   axios.defaults.withCredentials = true;
 
