@@ -15,8 +15,9 @@ const serverConfig = (app) => {
 
   app.use(
     cors({
-      origin: "http://localhost:5173",
+      origin: "https://pinter.fun",
       credentials: true,
+      methods: "GET, POST, OPTIONS",
     })
   );
   app.use(express.urlencoded({ extended: true }));
