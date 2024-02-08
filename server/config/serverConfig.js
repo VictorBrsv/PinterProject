@@ -7,7 +7,7 @@ const verifyAccessToken = require("../middleware/verifyJWT");
 const serverConfig = (app) => {
   app.use(
     cors({
-      origin: "https://pinter.fun",
+      origin: "http://localhost:5173",
       credentials: true,
     }),
   );
