@@ -18,6 +18,7 @@ const serverConfig = (app) => {
       origin: "https://pinter.fun",
       credentials: true,
       methods: "GET, POST, OPTIONS",
+      allowedHeaders: "Content-Type",
     })
   );
   app.use(express.urlencoded({ extended: true }));
