@@ -1,6 +1,8 @@
 import axios from "axios";
 import type { User } from "../components/users/types/User";
 import { AuthAuthoriza, AuthReg } from "../components/auth/types/AuthState";
+import { Party } from "../components/party/types/PartyState";
+import { CreateRoomWithTest, Room } from "../components/room/types/RoomState";
 
 export const registrationAxios = async (value: AuthReg): Promise<User> => {
   const { data }: { data: User } = await axios.post("/api/auth/sign-up", {
@@ -35,4 +37,27 @@ export const logOutAxios = async (): Promise<void> => {
   } catch (error) {
     console.log(error);
   }
+};
+
+//party
+
+export const allPartyAxios = async (): Promise<Party[]> => {
+  const { data }: { data: Party[] } = await axios.get("/api/party");
+  return data;
+};
+
+//room
+
+export const allRoomsDialogue = async (partyId: string| undefined): Promise<Room[]> => {
+  const { data }: { data: Room[] } = await axios.get(`api/room/${partyId}`);
+  return data;
+};
+
+export const createRoomDialogue = async (
+  roomWithTest: CreateRoomWithTest,
+): Promise<Room> => {
+  const { data } = await axios.post("/api/room/roomDialogue", {
+    data: roomWithTest,
+  });
+  return data;
 };

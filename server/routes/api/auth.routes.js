@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
-const { User } = require("../../db/models");
+const { User, Party } = require("../../db/models");
 const generateTokens = require("../../utils/authUtils");
 const cookiesConfig = require("../../config/cookiesConfig");
 
@@ -62,7 +62,14 @@ router.post("/sign-in", async (req, res) => {
     const { accessToken, refreshToken } = generateTokens({
       user: { id: userInDb.id, email: userInDb.email, name: userInDb.name },
     });
-
+    // await Party.create({
+    //   category: "ресторан",
+    //   title: "Хачапури и вино",
+    //   description: "вкусно",
+    //   image: "https://www.arenahall.info/upload/iblock/387/mbpd193z3yp9plzqqhp3wl1txxgmk7tv.jpg",
+    //   date: "always",
+    //   time: "18:00"
+    // });
     res
       .cookie(cookiesConfig.refresh, refreshToken, {
         maxAge: cookiesConfig.maxAgeRefresh,
