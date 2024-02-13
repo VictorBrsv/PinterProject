@@ -1,6 +1,6 @@
 import axios from "axios";
-import type { User } from "../features/users/types/User";
-import { AuthAuthoriza, AuthReg } from "../features/auth/types/AuthState";
+import type { User } from "../components/users/types/User";
+import { AuthAuthoriza, AuthReg } from "../components/auth/types/AuthState";
 
 export const registrationAxios = async (value: AuthReg): Promise<User> => {
   const { data }: { data: User } = await axios.post("/api/auth/registration", {

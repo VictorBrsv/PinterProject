@@ -2,13 +2,18 @@ import React, { useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
-import Navigation from "../features/navigation/Navigation";
-import Error from "../features/404/Error";
-import Registration from "../features/auth/Registration";
-import Authorization from "../features/auth/Authorization";
+import Navigation from "../components/navigation/Navigation";
+import Error from "../components/404/Error";
+import Registration from "../components/auth/Registration";
+import Authorization from "../components/auth/Authorization";
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import { checkAuth } from "../features/auth/authSlice";
+import { checkAuth } from "../components/auth/authSlice";
 import preloader from "./preloader.gif";
+import MainPage from "../components/main/MainPage";
+import PartiesList from "../components/party/PartiesList";
+import Map from "../components/map/Map";
+import UserProfile from "../components/profile/UserProfile";
+import PartyPage from "../components/party/PartyPage";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -29,6 +34,11 @@ function App(): JSX.Element {
           <Route path="/" element={<Navigation />}>
             <Route path="/auth/registration" element={<Registration />} />
             <Route path="/auth/authorization" element={<Authorization />} />
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/parties" element={<PartiesList />} />
+            <Route path="/contacts" element={<Map />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/party" element={<PartyPage />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
