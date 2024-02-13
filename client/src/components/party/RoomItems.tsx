@@ -1,9 +1,9 @@
 import React from 'react';
 import roomIcon1 from './styles/roomIcons/room_icon1.png';
-import roomIcon2 from './styles/roomIcons/room_icon2.png';
-import roomIcon3 from './styles/roomIcons/room_icon3.png';
-import roomIcon4 from './styles/roomIcons/room_icon4.png';
-import roomIcon5 from './styles/roomIcons/room_icon5.png';
+// import roomIcon2 from './styles/roomIcons/room_icon2.png';
+// import roomIcon3 from './styles/roomIcons/room_icon3.png';
+// import roomIcon4 from './styles/roomIcons/room_icon4.png';
+// import roomIcon5 from './styles/roomIcons/room_icon5.png';
 import styles from './styles/Party.module.scss';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ export default function RoomItems(): JSX.Element {
                 <h4>Комната #1</h4>
                 <img src={roomIcon1} alt="enter the room1" />
             </div>
-            <div className={styles.item} onClick={() => nav('/')}>
+            {/* <div className={styles.item} onClick={() => nav('/')}>
                 <h4>Комната #2</h4>
                 <img src={roomIcon2} alt="enter the room2" />
             </div>
@@ -32,7 +32,7 @@ export default function RoomItems(): JSX.Element {
             <div className={styles.item} onClick={() => nav('/')}>
                 <h4>Комната #5</h4>
                 <img src={roomIcon5} alt="enter the room5" />
-            </div>
+            </div> */}
         </div>
     )
 }
