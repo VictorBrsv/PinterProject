@@ -2,7 +2,7 @@ import axios from "axios";
 import type { User } from "../components/users/types/User";
 import { AuthAuthoriza, AuthReg } from "../components/auth/types/AuthState";
 import { Party } from "../components/party/types/PartyState";
-import { CreateRoomWithTest, Room } from "../components/room/types/RoomState";
+import { CreateRoomWithTest, Room, RoomTest } from "../components/room/types/RoomState";
 
 export const registrationAxios = async (value: AuthReg): Promise<User> => {
   const { data }: { data: User } = await axios.post("/api/auth/sign-up", {
@@ -61,3 +61,12 @@ export const createRoomDialogue = async (
   });
   return data;
 };
+
+//test
+
+export const passTheTest = async (test: RoomTest): Promise<any> => {
+  const {data} = await axios.post('/api/room/test', {
+    data: test
+  })
+  return data
+}
