@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RoomItems from "../room/RoomsItem";
 import styles from "./styles/Party.module.scss";
-import findYours from "./styles/Найти своих.png";
+import findYours from "./styles/find_yours.svg";
 import AddRoomModal from "../room/AddRoomModal";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useParams } from "react-router-dom";
@@ -29,7 +29,7 @@ export default function PartyPage(): JSX.Element {
   return (
     // добавить картинку для отдельного мероприятия party.image
     <div className={styles.party_page}>
-      <img className={styles.findYours} src={findYours} alt="" />
+      <img className={styles.findYours} src={findYours} alt="find your company" />
       <div className={styles.party_page__info}>
         <button type="button" onClick={() => setVisible(true)}>
           Создать комнату
