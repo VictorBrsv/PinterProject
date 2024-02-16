@@ -4,8 +4,11 @@ import { CreateRoomWithTest, RoomTest, RoomsState } from "./types/RoomState";
 
 const initialState: RoomsState = {
   rooms: [],
+  access_tables: [],
 };
-
+export const allAccessTables = createAsyncThunk("rooms/allAccessTables", () =>
+  api.access_tablesAxios(),
+);
 export const loadRooms = createAsyncThunk(
   "rooms/load",
   (partyId: string | undefined) => api.allRoomsDialogue(partyId),
@@ -28,11 +31,14 @@ const roomsSlice = createSlice({
       state.rooms = action.payload;
     });
     builder.addCase(addRoomWithTest.fulfilled, (state, action) => {
-      state.rooms.push(action.payload);
+      state.rooms.push(action.payload.newRoom);
+      state.access_tables.push(action.payload.access_table);
+    });
+    builder.addCase(allAccessTables.fulfilled, (state, action) => {
+      state.access_tables = action.payload;
     });
     builder.addCase(passTestRoom.fulfilled, (state, action) => {
-      state.rooms,
-      action.payload = action.payload.message
+      state.access_tables.push(action.payload);
     });
   },
 });

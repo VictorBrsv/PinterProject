@@ -6,9 +6,15 @@ export type Room = {
   members: number;
   token: string;
 };
-
+export type Access_Table = {
+  id: number;
+  room_token: string;
+  access: boolean;
+  user_id: number;
+};
 export type RoomsState = {
   rooms: Room[];
+  access_tables: Access_Table[];
 };
 
 export type CreateRoomWithTest = {

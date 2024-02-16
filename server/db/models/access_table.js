@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   Access_Table.init(
     {
       room_token: DataTypes.STRING,
+      access: DataTypes.BOOLEAN,
       user_id: DataTypes.INTEGER,
     },
     {

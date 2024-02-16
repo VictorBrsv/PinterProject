@@ -39,9 +39,10 @@ export default function AddRoomModal({
         firstAnswer,
         secondAnswer,
         thirdAnswer,
-        partyId
+        partyId,
       }),
     );
+    hide();
   };
 
   return (
@@ -58,18 +59,21 @@ export default function AddRoomModal({
               value={title}
               type="text"
               placeholder="Придумайте название комнаты"
+              required
             />
             <input
               onChange={(e) => setMembers(e.target.value)}
               value={members}
               type="number"
               placeholder="Количество людей"
+              required
             />
             <input
               onChange={(e) => setDescription(e.target.value)}
               value={description}
               type="text"
               placeholder="Описание"
+              required
             />
           </div>
 
@@ -94,10 +98,14 @@ export default function AddRoomModal({
                 onChange={(e) => setFirstQuestion(e.target.value)}
                 type="text"
                 placeholder="Вопрос 1"
+                required
               />
               <select
-                onChange={(e) => setFirstAnswer(e.target.value)}
+                onChange={(e) => {
+                  setFirstAnswer(e.target.value);
+                }}
                 value={firstAnswer}
+                required
               >
                 <option value="" disabled></option>
                 <option>Да</option>
@@ -110,10 +118,14 @@ export default function AddRoomModal({
                 onChange={(e) => setSecondQuestion(e.target.value)}
                 type="text"
                 placeholder="Вопрос 2"
+                required
               />
               <select
-                onChange={(e) => setSecondAnswer(e.target.value)}
+                onChange={(e) => {
+                  setSecondAnswer(e.target.value);
+                }}
                 value={secondAnswer}
+                required
               >
                 <option value="" disabled></option>
                 <option>Да</option>
@@ -126,11 +138,14 @@ export default function AddRoomModal({
                 onChange={(e) => setThirdQuestion(e.target.value)}
                 type="text"
                 placeholder="Вопрос 3"
+                required
               />
-              {/* <button>Да</button> */}
               <select
-                onChange={(e) => setThirdAnswer(e.target.value)}
+                onChange={(e) => {
+                  setThirdAnswer(e.target.value);
+                }}
                 value={thirdAnswer}
+                required
               >
                 <option value="" disabled></option>
                 <option>Да</option>

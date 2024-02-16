@@ -15,7 +15,7 @@ module.exports = {
       },
       qa: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.JSON
       },
       room_dialogue_id: {
         allowNull: false,

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
-const { User, Party } = require("../../db/models");
+const { User, Party, Access_Table } = require("../../db/models");
 const generateTokens = require("../../utils/authUtils");
 const cookiesConfig = require("../../config/cookiesConfig");
 
@@ -45,7 +45,9 @@ router.post("/sign-up", async (req, res) => {
 router.post("/sign-in", async (req, res) => {
   try {
     const { email, password } = req.body.data;
-    const userInDb = await User.findOne({ where: { email } });
+    const userInDb = await User.findOne({
+      where: { email },
+    });
     if (!userInDb) {
       res.json({ message: "Такого юзера не существует или пароль неверный" });
       return;
@@ -86,10 +88,6 @@ router.post("/sign-in", async (req, res) => {
   }
 });
 
-router.get("/test", (req, res) => {
-  res.json({ message: "HOROSHO" });
-  res.end();
-});
 
 router.get("/logout", (req, res) => {
   const { access } = req.cookies;

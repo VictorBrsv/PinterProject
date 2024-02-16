@@ -2,7 +2,12 @@ import axios from "axios";
 import type { User } from "../components/users/types/User";
 import { AuthAuthoriza, AuthReg } from "../components/auth/types/AuthState";
 import { Party } from "../components/party/types/PartyState";
-import { CreateRoomWithTest, Room, RoomTest } from "../components/room/types/RoomState";
+import {
+  Access_Table,
+  CreateRoomWithTest,
+  Room,
+  RoomTest,
+} from "../components/room/types/RoomState";
 
 export const registrationAxios = async (value: AuthReg): Promise<User> => {
   const { data }: { data: User } = await axios.post("/api/auth/sign-up", {
@@ -39,6 +44,15 @@ export const logOutAxios = async (): Promise<void> => {
   }
 };
 
+//access_tables
+
+export const access_tablesAxios = async (): Promise<Access_Table[]> => {
+  const { data }: { data: Access_Table[] } = await axios.get(
+    "/api/room/access_tables",
+  );
+  return data;
+};
+
 //party
 
 export const allPartyAxios = async (): Promise<Party[]> => {
@@ -48,7 +62,9 @@ export const allPartyAxios = async (): Promise<Party[]> => {
 
 //room
 
-export const allRoomsDialogue = async (partyId: string| undefined): Promise<Room[]> => {
+export const allRoomsDialogue = async (
+  partyId: string | undefined,
+): Promise<Room[]> => {
   const { data }: { data: Room[] } = await axios.get(`api/room/${partyId}`);
   return data;
 };
@@ -64,9 +80,9 @@ export const createRoomDialogue = async (
 
 //test
 
-export const passTheTest = async (test: RoomTest): Promise<any> => {
-  const {data} = await axios.post('/api/room/test', {
-    data: test
-  })
-  return data
-}
+export const passTheTest = async (test: RoomTest): Promise<Access_Table> => {
+  const { data } = await axios.post("/api/room/test", {
+    data: test,
+  });
+  return data;
+};

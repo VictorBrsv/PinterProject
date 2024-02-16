@@ -10,5 +10,5 @@ export type AuthReg = {
   email: string;
   password: string;
   cpassword: string;
-}
+};
 export type AuthAuthoriza = Omit<AuthReg, "name" | "cpassword">;

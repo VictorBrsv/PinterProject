@@ -7,6 +7,7 @@ const initialState: AuthState = {
   error: undefined,
 };
 
+
 export const registration = createAsyncThunk(
   "auth/registration",
   (value: AuthReg) => api.registrationAxios(value),
@@ -43,7 +44,7 @@ const authSlice = createSlice({
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = undefined;
-      });
+      })
   },
 });
 export default authSlice.reducer;

@@ -4,6 +4,7 @@ import { Room } from "./types/RoomState";
 import { passTestRoom } from "./roomSlice";
 import { useAppDispatch } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function RoomInfoWithTest({
   hide,
@@ -15,9 +16,8 @@ export default function RoomInfoWithTest({
   const [firstAnswer, setFirstAnswer] = useState("");
   const [secondAnswer, setSecondAnswer] = useState("");
   const [thirdAnswer, setThirdAnswer] = useState("");
-  const dispatch = useAppDispatch();
-  const { question1, question2, question3 } = JSON.parse(room.Test.qa);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const addRoomHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const roomId = room.id;
@@ -33,9 +33,11 @@ export default function RoomInfoWithTest({
         navigate("/chat");
         return;
       }
-      return alert(data.payload);
+      return;
     });
+    hide();
   };
+  const { question1, question2, question3 } = room.Test.qa;
 
   return (
     <div className={styles.modal}>
@@ -57,6 +59,7 @@ export default function RoomInfoWithTest({
               <select
                 onChange={(e) => setFirstAnswer(e.target.value)}
                 value={firstAnswer}
+                required
               >
                 <option value="" disabled></option>
                 <option>Да</option>
@@ -68,6 +71,7 @@ export default function RoomInfoWithTest({
               <select
                 onChange={(e) => setSecondAnswer(e.target.value)}
                 value={secondAnswer}
+                required
               >
                 <option value="" disabled></option>
                 <option>Да</option>
@@ -79,6 +83,7 @@ export default function RoomInfoWithTest({
               <select
                 onChange={(e) => setThirdAnswer(e.target.value)}
                 value={thirdAnswer}
+                required
               >
                 <option value="" disabled></option>
                 <option>Да</option>

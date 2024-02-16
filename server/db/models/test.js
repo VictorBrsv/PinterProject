@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Test.init({
     title: DataTypes.STRING,
-    qa: DataTypes.TEXT,
+    qa: DataTypes.JSON,
     room_dialogue_id: DataTypes.INTEGER
   }, {
     sequelize,

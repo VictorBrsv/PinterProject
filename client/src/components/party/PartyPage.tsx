@@ -8,9 +8,10 @@ import { useParams } from "react-router-dom";
 import { loadRooms } from "../room/roomSlice";
 
 export default function PartyPage(): JSX.Element {
-  const [visible, setVisible] = useState(false);
   const { parties } = useAppSelector((store) => store.party);
+  const { user } = useAppSelector((store) => store.auth);
   const { rooms } = useAppSelector((store) => store.room);
+  const [visible, setVisible] = useState(false);
   const { partyId } = useParams();
   const dispatch = useAppDispatch();
 
@@ -24,14 +25,25 @@ export default function PartyPage(): JSX.Element {
   };
   useEffect(() => {
     dispatch(loadRooms(partyId));
-  }, []);
+  }, [setVisible]);
 
+  const createRoomHandler = () => {
+    if (user?.name) {
+      setVisible(true);
+    } else {
+      alert("Для создания комнаты необходимо войти в приложение");
+    }
+  };
   return (
     // добавить картинку для отдельного мероприятия party.image
     <div className={styles.party_page}>
-      <img className={styles.findYours} src={findYours} alt="find your company" />
+      <img
+        className={styles.findYours}
+        src={findYours}
+        alt="find your company"
+      />
       <div className={styles.party_page__info}>
-        <button type="button" onClick={() => setVisible(true)}>
+        <button type="button" onClick={createRoomHandler}>
           Создать комнату
         </button>
         <div className={styles.time_place}>
@@ -41,12 +53,19 @@ export default function PartyPage(): JSX.Element {
       </div>
       <p>{party?.description}</p>
       <div>
-        <h1>Выбрать комнату</h1>
-        {rooms.map((room) => (
-          <RoomItems key={room.id} room={room} />
-        ))}
+        {user?.name ? (
+          <>
+            <h1>Выбрать комнату</h1>
+            {rooms.map((room) => (
+              <RoomItems key={room.id} room={room} />
+            ))}
+          </>
+        ) : (
+          <>
+            <h1>Для просмотра комнат необходимо авторизоваться</h1>
+          </>
+        )}
       </div>
-
       {visible && <AddRoomModal hide={hide} partyId={partyId} />}
     </div>
   );
