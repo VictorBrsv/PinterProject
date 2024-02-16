@@ -5,9 +5,10 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
-    static associate({Access_Table, Group_Member}) {
+    static associate({Access_Table, Group_Member, Message}) {
       this.hasMany(Access_Table, {foreignKey: 'user_id'});
       this.hasMany(Group_Member, {foreignKey: 'user_id'});
+      this.hasMany(Message, {foreignKey: 'userId'});
     }
   }
   User.init({
