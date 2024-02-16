@@ -5,7 +5,6 @@ export type User = {
   password: string;
   image?: string;
   message?: string;
-  image: string;
 };
 
 export type UserId = User["id"];

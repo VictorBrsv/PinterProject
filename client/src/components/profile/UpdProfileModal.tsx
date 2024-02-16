@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './styles/User.module.scss';
 import logoSml from './styles/user_logo_sml.png';
 // import imgUpload from './styles/img_upload.png';
@@ -14,11 +14,6 @@ export default function UpdProfileModal({ hide }: { hide: () => void }): JSX.Ele
     const [password, setPassword] = useState(user?.password || "");
     const dispatch = useAppDispatch();
 
-    // useEffect(() => {
-    //     setName(user?.name || "");
-    //     setEmail(user?.email ||"");
-    //     setPassword(user?.password || "");
-    // }, [user]);
 
     const changeProfileHandler = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
