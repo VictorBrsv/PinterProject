@@ -15,11 +15,9 @@ export default function Registration(): JSX.Element {
 
   const onHandleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch(registration({ name, email, password }))
+    dispatch(registration({ name, email, password, cpassword }))
       .then(
-        (data: {
-          error: { message: React.SetStateAction<string | undefined> };
-        }) => {
+        (data) => {
           if ("error" in data) {
             setError(data.error.message);
             return;

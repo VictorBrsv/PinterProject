@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import roomIcon1 from "./styles/roomIcons/room_icon1.png";
+import roomIcon1 from "./styles/roomIcons/room_icon1.svg";
 // import roomIcon2 from './styles/roomIcons/room_icon2.png';
 // import roomIcon3 from './styles/roomIcons/room_icon3.png';
 // import roomIcon4 from './styles/roomIcons/room_icon4.png';

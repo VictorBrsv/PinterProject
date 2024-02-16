@@ -18,7 +18,7 @@ export default function MainPage(): JSX.Element {
         <div>
           <h1 onClick={() => nav('/profile')}>Pinter</h1>
           <p>Твое комьюнити рядом</p>
-          <button type='button' onClick={() => nav('/party')}>НАЙТИ СВОИХ</button>
+          <button type='button' onClick={() => nav('/parties')}>НАЙТИ СВОИХ</button>
         </div>
         <div className={styles.video}>
           <video src={video} width={640} height={360} autoPlay muted playsInline loop />

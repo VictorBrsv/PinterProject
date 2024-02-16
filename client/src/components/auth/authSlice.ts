@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AuthAuthoriza, AuthReg, AuthState } from "./types/AuthState";
 import * as api from "../../App/api";
+import { User } from "../users/types/User";
 
 const initialState: AuthState = {
   user: undefined,
@@ -26,6 +27,8 @@ export const checkAuth = createAsyncThunk("auth/check", async () => {
 
 export const logOut = createAsyncThunk("auth/logout", () => api.logOutAxios());
 
+export const updProfile = createAsyncThunk("auth/updProfile", (value: User) => api.updUserProfileAxios(value));
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -43,7 +46,12 @@ const authSlice = createSlice({
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = undefined;
+      })
+      .addCase(updProfile.fulfilled, (state, action) => {
+        state.user = action.payload;
+        // console.log('upd: ', action.payload);
       });
   },
 });
+
 export default authSlice.reducer;

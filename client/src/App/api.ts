@@ -4,6 +4,7 @@ import { AuthAuthoriza, AuthReg } from "../components/auth/types/AuthState";
 import { Party } from "../components/party/types/PartyState";
 import { CreateRoomWithTest, Room, RoomTest } from "../components/room/types/RoomState";
 
+// auth + users
 export const registrationAxios = async (value: AuthReg): Promise<User> => {
   const { data }: { data: User } = await axios.post("/api/auth/sign-up", {
     data: value,
@@ -38,6 +39,13 @@ export const logOutAxios = async (): Promise<void> => {
     console.log(error);
   }
 };
+
+export const updUserProfileAxios = async (value: User): Promise<User> => {
+  const { data }: { data: User } = await axios.put('/api/users/profile', {
+    data: value,
+  });
+  return data;
+}
 
 //party
 

@@ -46,6 +46,7 @@
         // margin-left: 10%;
         // margin-right: 0;
         display: flex;
+        justify-content: end;
         gap: 20px;
 
         &::after {
@@ -68,8 +69,18 @@
         span {
             display: flex;
             gap: 5px;
+            cursor: pointer;
             &::after {
                 content: url('./login_icon.svg');
+            }
+        }
+
+        .nav__button {
+            display: flex;
+            gap: 10px;
+            cursor: pointer;
+            &::after {
+                content: url('./logout_icon.svg');
             }
         }
     }

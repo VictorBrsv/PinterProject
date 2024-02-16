@@ -57,7 +57,7 @@ export default function AddRoomModal({
               onChange={(e) => setTitle(e.target.value)}
               value={title}
               type="text"
-              placeholder="Придумайте название комнаты"
+              placeholder="Название комнаты"
             />
             <input
               onChange={(e) => setMembers(e.target.value)}
@@ -69,7 +69,7 @@ export default function AddRoomModal({
               onChange={(e) => setDescription(e.target.value)}
               value={description}
               type="text"
-              placeholder="Описание"
+              placeholder="Придумайте описание"
             />
           </div>
 
@@ -87,7 +87,7 @@ export default function AddRoomModal({
           </div>
 
           <div className={styles.add_room__questions}>
-            <h2>Придумайте три вопроса</h2>
+            <h2>Придумайте три вопроса для входа в вашу комнату</h2>
             <div className={styles.qa}>
               <input
                 value={firstQuestion}

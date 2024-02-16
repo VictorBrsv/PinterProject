@@ -22,6 +22,7 @@ export default function PartyPage(): JSX.Element {
   const hide = (): void => {
     setVisible(false);
   };
+
   useEffect(() => {
     dispatch(loadRooms(partyId));
   }, []);
@@ -30,6 +31,7 @@ export default function PartyPage(): JSX.Element {
     // добавить картинку для отдельного мероприятия party.image
     <div className={styles.party_page}>
       <img className={styles.findYours} src={findYours} alt="find your company" />
+
       <div className={styles.party_page__info}>
         <button type="button" onClick={() => setVisible(true)}>
           Создать комнату
@@ -40,11 +42,15 @@ export default function PartyPage(): JSX.Element {
         </div>
       </div>
       <p>{party?.description}</p>
-      <div>
+
+      <div className={styles.choose_room}>
         <h1>Выбрать комнату</h1>
-        {rooms.map((room) => (
-          <RoomItems key={room.id} room={room} />
-        ))}
+
+        <div className={styles.rooms__container}>
+          {rooms.map((room) => (
+            <RoomItems key={room.id} room={room} />
+          ))}
+        </div>
       </div>
 
       {visible && <AddRoomModal hide={hide} partyId={partyId} />}

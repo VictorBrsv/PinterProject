@@ -3,6 +3,7 @@ import UserCard from './UserCard';
 import styles from './styles/User.module.scss';
 import UpdProfileModal from './UpdProfileModal';
 import bgTitle from './styles/profile_title.svg';
+import NavForProfile from '../navigation/NavForProfile';
 
 export default function UserProfile(): JSX.Element {
     const [visible, setVisible] = useState(false);
@@ -13,6 +14,7 @@ export default function UserProfile(): JSX.Element {
 
     return (
         <>
+            <NavForProfile />
             {visible ? (
                 <UpdProfileModal hide={hide} />
                 ) : (

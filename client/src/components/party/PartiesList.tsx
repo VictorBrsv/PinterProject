@@ -19,6 +19,7 @@ export default function PartiesList(): JSX.Element {
                 <div className={styles.where}>Куда идем</div>
                 <div className={styles.togo}>сегодня?</div>
             </div>
+
             <div className={styles.filter__container}>
                 <p>{selectedValue}</p>
                 <select value={"Выбрать категорию"} onChange={handleChange}>
@@ -28,9 +29,13 @@ export default function PartiesList(): JSX.Element {
                     <option value="В этом месяце">В этом месяце</option>
                 </select>
             </div>
-            {parties.map((party) => (
-              <PartyItem key={party.id} party={party} />
-            ))}
+
+            <div className={styles.all__parties}>
+                {parties.map((party) => (
+                <PartyItem key={party.id} party={party} />
+                ))}
+            </div>
+            
             <div className={styles.btn__container}>
                 <div><img src={leftArr} alt="" /></div>
                 <div><img src={rightArr} alt="" /></div>
