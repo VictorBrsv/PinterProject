@@ -13,7 +13,7 @@ export default function RoomChat(): JSX.Element {
                 <div>
                     <p>Тема: <span>Бизнес-ланч от Setters X Surf Coffee</span></p>
                 </div>
-                <h3 onClick={() => nav('/main')}>На главную</h3>
+                <h3 onClick={() => nav('/')}>На главную</h3>
             </div>
             <div className={styles.chat__body}>
                 <div className={styles.messages}>

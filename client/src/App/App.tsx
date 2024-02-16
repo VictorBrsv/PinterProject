@@ -21,8 +21,8 @@ import { allAccessTables } from "../components/room/roomSlice";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
-  // axios.defaults.baseURL = "http://localhost:3001";
-  axios.defaults.baseURL = "https://pinter.fun";
+  axios.defaults.baseURL = "http://localhost:3001";
+  // axios.defaults.baseURL = "https://pinter.fun";
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
@@ -40,11 +40,11 @@ function App(): JSX.Element {
         <Route path="/parties" element={<PartiesList />} />
         <Route path="/steps" element={<ThreeSteps />} />
         <Route path="/contacts" element={<Map />} />
-        <Route path="/profile" element={<UserProfile />} />
         <Route path="/parties/:partyId" element={<PartyPage />} />
       </Route>
+      <Route path="/profile" element={<UserProfile />} />
       <Route path="/room" element={<RoomPage />} />
-      <Route path="/chat" element={<ChatPage />} />
+      <Route path="/chat" element={<ChatPage/>}/>
       <Route path="*" element={<Error />} />
     </Routes>
   );

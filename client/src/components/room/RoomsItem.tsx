@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import roomIcon1 from "./styles/roomIcons/room_icon1.png";
+import roomIcon1 from "./styles/roomIcons/room_icon1.svg";
+// import roomIcon2 from './styles/roomIcons/room_icon2.png';
+// import roomIcon3 from './styles/roomIcons/room_icon3.png';
+// import roomIcon4 from './styles/roomIcons/room_icon4.png';
+// import roomIcon5 from './styles/roomIcons/room_icon5.png';
 import styles from "../party/styles/Party.module.scss";
 import { Room } from "./types/RoomState";
 import RoomInfoWithTest from "./RoomInfoWithTest";

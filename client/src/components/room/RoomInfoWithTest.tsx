@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./styles/Room.module.scss";
+import styles from "./styles/RoomInfoWithTest.module.scss";
 import { Room } from "./types/RoomState";
 import { passTestRoom } from "./roomSlice";
 import { useAppDispatch } from "../../redux/store";
@@ -18,6 +18,7 @@ export default function RoomInfoWithTest({
   const [thirdAnswer, setThirdAnswer] = useState("");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const addRoomHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const roomId = room.id;
@@ -41,19 +42,20 @@ export default function RoomInfoWithTest({
 
   return (
     <div className={styles.modal}>
-      <div className={styles.add_room}>
-        <button className={styles.add_room__close_btn} onClick={hide}>
+      <div className={styles.room_info}>
+        <button className={styles.room_info__close_btn} onClick={hide}>
           <span>Закрыть</span>
         </button>
 
         <form onSubmit={addRoomHandler}>
-          <div className={styles.add_room__title}>
+          <div className={styles.room_info__title}>
             <p>{room.title}</p>
-            <p>{room.description}</p>
+            <h3>{room.description}</h3>
           </div>
 
-          <div className={styles.add_room__questions}>
-            <h2>Пройдите тест для входа</h2>
+          <div className={styles.room_info__questions}>
+            <h2>Прежде чем войти, ответьте на три вопроса</h2>
+
             <div className={styles.qa}>
               <p>{question1.question}</p>
               <select
@@ -66,6 +68,7 @@ export default function RoomInfoWithTest({
                 <option>Нет</option>
               </select>
             </div>
+
             <div className={styles.qa}>
               <p>{question2.question}</p>
               <select
@@ -78,6 +81,7 @@ export default function RoomInfoWithTest({
                 <option>Нет</option>
               </select>
             </div>
+
             <div className={styles.qa}>
               <p>{question3.question}</p>
               <select
@@ -90,7 +94,8 @@ export default function RoomInfoWithTest({
                 <option>Нет</option>
               </select>
             </div>
-            <button type="submit" className={styles.add_room__btn}>
+            
+            <button type="submit" className={styles.room_info__btn}>
               Войти
             </button>
           </div>

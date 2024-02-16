@@ -1,9 +1,12 @@
 .user__card {
-    width: 485px;
+    width: 495px;
+    height: 255px;
     margin-top: 50px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
-    padding: 30px 20px;
+    padding: 30px;
     border: 1px solid #7e7e7e;
     border-radius: 20px;
     text-align: start;
@@ -14,10 +17,12 @@
         height: auto;
         border-radius: 50%;
         border: 1px solid #CACACA;
-        background-size: cover;
+        // background: url('./user_logo_example.png') no-repeat;
+        // background-size: cover;
     }
 
     &__info {
+        min-width: 210px;
         display: flex;
         flex-direction: column;
         gap: 20px;

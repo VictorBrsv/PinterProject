@@ -23,6 +23,7 @@ export default function PartyPage(): JSX.Element {
   const hide = (): void => {
     setVisible(false);
   };
+
   useEffect(() => {
     dispatch(loadRooms(partyId));
   }, [setVisible]);
@@ -52,18 +53,19 @@ export default function PartyPage(): JSX.Element {
         </div>
       </div>
       <p>{party?.description}</p>
-      <div>
-        {user?.name ? (
-          <>
+
+      <div className={styles.choose_room}>
+      {user?.name ? (
+          <div className={styles.rooms__container}>
             <h1>Выбрать комнату</h1>
             {rooms.map((room) => (
               <RoomItems key={room.id} room={room} />
             ))}
-          </>
+          </div>
         ) : (
-          <>
+          <div className={styles.rooms__container}>
             <h1>Для просмотра комнат необходимо авторизоваться</h1>
-          </>
+          </div>
         )}
       </div>
       {visible && <AddRoomModal hide={hide} partyId={partyId} />}

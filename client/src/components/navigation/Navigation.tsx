@@ -1,6 +1,5 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
-// import "./style/NavigationStyle.css";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import styles from "./style/Navigation.module.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { logOut } from "../auth/authSlice";
@@ -9,11 +8,13 @@ import { HashLink } from "react-router-hash-link";
 
 export default function Navigation(): JSX.Element {
   const { user } = useAppSelector((store) => store.auth);
+  const nav = useNavigate();
 
   const dispatch = useAppDispatch();
 
   const onHandleLogout = (): void => {
     void dispatch(logOut());
+    nav('/');
   };
 
   return (
@@ -57,9 +58,8 @@ export default function Navigation(): JSX.Element {
               </li>
             </div>
           ) : (
-            <>
-              {/* <li>hello {user.name}</li> */}
-              <li className={styles.lk}>
+            <div className={styles.lk}>
+              <li>
                 <NavLink className="nav__button" to="/profile">
                   Личный кабинет
                 </NavLink>
@@ -73,7 +73,7 @@ export default function Navigation(): JSX.Element {
                   Выйти
                 </button>
               </li>
-            </>
+            </div>
           )}
         </ul>
       </div>

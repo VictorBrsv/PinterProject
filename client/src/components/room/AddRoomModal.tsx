@@ -91,7 +91,7 @@ export default function AddRoomModal({
           </div>
 
           <div className={styles.add_room__questions}>
-            <h2>Придумайте три вопроса</h2>
+            <h2>Придумайте три вопроса для входа в вашу комнату</h2>
             <div className={styles.qa}>
               <input
                 value={firstQuestion}

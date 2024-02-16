@@ -14,7 +14,7 @@ export default function PartyItem({ party }: { party: Party }): JSX.Element {
         <h3>{party.title}</h3>
         <p>{`${party.time} ${party.date}`}</p>
       </div>
-      <h4 onClick={() => nav("/party")}>Найти компанию</h4>
+      <h4 onClick={() => nav(`/parties/${party.id}`)}>Найти компанию</h4>
     </div>
   );
 }
