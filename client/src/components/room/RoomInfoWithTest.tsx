@@ -39,6 +39,7 @@ export default function RoomInfoWithTest({
     hide();
   };
   const { question1, question2, question3 } = room.Test.qa;
+  
 
   return (
     <div className={styles.modal}>

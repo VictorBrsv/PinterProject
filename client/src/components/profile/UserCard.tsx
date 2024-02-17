@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-// import profileImage from './styles/user_logo_example.png';
 import profileImage from './styles/user_logo_example.svg';
-import styles from './styles/User.module.scss';
+import styles from './styles/UserCard.module.scss';
 import UpdProfileModal from './UpdProfileModal';
 import { useAppSelector } from '../../redux/store';
 
 export default function UserCard(): JSX.Element {
   const [visible, setVisible] = useState(false);
   const { user } = useAppSelector((store) => store.auth);
+  const userCardImg = user?.image || profileImage;
 
   const hide = (): void => {
     setVisible(false)
@@ -16,8 +16,7 @@ export default function UserCard(): JSX.Element {
   return (
     <>
       <div className={styles.user__card}>
-          <img className={styles.user__card__img} src={profileImage} alt="profile img" />
-          {/* <img className={styles.user__card__img} src={user?.image} alt="profile img" /> */}
+          <img className={styles.user__card__img} src={userCardImg} alt="profile img" />
 
           <div className={styles.user__card__info}>
               <div className={styles.user__card__name}>

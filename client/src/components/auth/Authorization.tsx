@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/store";
 import { authorization } from "./authSlice";
 import styles from "./styles/Auth.module.scss";
+import welcome from './styles/welcome_bg.svg';
+
 
 export default function Authorization(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -31,6 +33,7 @@ export default function Authorization(): JSX.Element {
     <div className={styles.container}>
       <form id="reg-form" onSubmit={onHandleSubmit}>
         <h2>Без вас никуда! Мы ждали</h2>
+        <img src={welcome} alt="welcome" />
         <div className="mb-3">
           <input
             value={email}

@@ -7,7 +7,7 @@ export default function About(): JSX.Element {
     // const nav = useNavigate();
 
     return (
-        <div className={styles.container}>
+        <div id="about" className={styles.container}>
             <p>Приложение, которое объединяет</p>
             <div className={styles.about}>
                 <div className={styles.item}><span>Планируйте свой досуг</span>, не потратив времени и сил на поиск той самой компании</div>

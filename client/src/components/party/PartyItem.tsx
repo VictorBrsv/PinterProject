@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./styles/Party.module.scss";
+// import styles from "./styles/Party.module.scss";
+import styles from "./styles/PartiesList.module.scss";
 // import partyImage from "./styles/party_item.png";
 import { useNavigate } from "react-router-dom";
 import { Party } from "./types/PartyState";

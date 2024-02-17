@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../redux/store";
 import { registration } from "./authSlice";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/Auth.module.scss";
+import welcome from './styles/welcome_bg.svg';
 
 export default function Registration(): JSX.Element {
   const [name, setName] = useState("");
@@ -33,7 +34,8 @@ export default function Registration(): JSX.Element {
   return (
     <div className={styles.container}>
       <form id="reg-form" onSubmit={onHandleSubmit}>
-        <h2>Добро пожаловать в Pinter</h2>
+        <h2>Вперед к коммьюнити</h2>
+        <img src={welcome} alt="welcome" />
         <div>
           <input
             value={name}
@@ -75,6 +77,7 @@ export default function Registration(): JSX.Element {
             {error}
           </div>
         )}
+        <p onClick={() => navigate("/auth/authorization")}>У вас уже есть аккаунт? Вход</p>
         <button type="submit">Зарегистрироваться</button>
       </form>
     </div>

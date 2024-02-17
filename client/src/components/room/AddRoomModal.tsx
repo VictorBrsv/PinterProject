@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./styles/Room.module.scss";
+import styles from "./styles/AddRoomModal.module.scss";
 import { useAppDispatch } from "../../redux/store";
 import { addRoomWithTest } from "./roomSlice";
 
