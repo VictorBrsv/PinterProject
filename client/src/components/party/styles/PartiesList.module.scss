@@ -62,13 +62,13 @@
   .all__parties {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     gap: 20px;
     margin: 30px 0;
 
     .party__item {
-      margin-top: 50px; // убрать потом
+      // margin-top: 50px; // убрать потом
       width: 260px;
       height: 468px;
   

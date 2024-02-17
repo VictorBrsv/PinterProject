@@ -7,6 +7,29 @@
     align-items: center;
     margin-top: 50px;
 
+    .map {
+        position: relative;
+        width: 760px;
+        height: 500px;
+        border: 1px solid #7e7e7e;
+
+        &__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+            pointer-events: none;
+        }
+        ymaps {
+            color: #000000 !important;
+            font-weight: 500;
+            font-size: 12px;
+        }
+    }
+
     h1 {
         font-size: 135px;
         color: #DFE0E7;
@@ -58,4 +81,19 @@
         }
     }
 
+}
+.map {
+    position: relative;
+    width: 760px;
+    height: 500px;
+    border: 1px solid #7e7e7e;
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.45);
+        z-index: 10000000;
+    }
 }

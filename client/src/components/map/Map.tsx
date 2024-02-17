@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles/Map.module.scss';
 import map from './styles/map_img.png';
 import Footer from '../footer/Footer';
+import MapComponent from './MapComponent';
 
 export default function Map(): JSX.Element {
 
@@ -30,8 +31,10 @@ export default function Map(): JSX.Element {
                         </div>
                     </div>
 
-                    <div>
-                        <img src={map} alt="map img" />
+                    <div className={styles.map}>
+                        {/* <img src={map} alt="map img" /> */}
+                        <MapComponent />
+                        <div className={styles.map__overlay}></div>
                     </div>
                 </div>
             </div>
