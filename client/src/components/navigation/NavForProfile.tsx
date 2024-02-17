@@ -40,7 +40,7 @@ export default function NavForProfile(): JSX.Element {
                         </li>
                     </div>
 
-                    {user?.name && (
+                    {user?.name ? (
                         <div className={styles.lk}>
                             <li className="nav__item lk">
                                 <span
@@ -51,6 +51,19 @@ export default function NavForProfile(): JSX.Element {
                                     <img src={userAvatar} alt="User's avatar" />
                                     Выйти
                                 </span>
+                            </li>
+                        </div>
+                    ): (
+                        <div className={styles.lk}>
+                            <li className="nav__item lk">
+                                <NavLink className="nav__button" to="/auth/registration">
+                                Регистрация
+                                </NavLink>
+                            </li>
+                            <li className="nav__item lk">
+                                <NavLink className="nav__button" to="/auth/authorization">
+                                <span>Вход</span>
+                                </NavLink>
                             </li>
                         </div>
                     )}
