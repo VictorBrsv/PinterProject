@@ -1,26 +1,33 @@
 .counter {
-    margin-top: 100px;
-    width: 100%;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #7e7e7e;
-    border-bottom: 1px solid #7e7e7e;
+  margin-top: 100px;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #7e7e7e;
+  border-bottom: 1px solid #7e7e7e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
-    img {
-        margin-top: 20px;
-        width: 740px;
-        height: auto;
-        padding: 5px;
-    }
-
-    p {
-        font-size: 32px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
-        margin-bottom: 50px;
-        color: #BABCC9;
-    }
+  .count {
+    font-size: 300px;
+    font-family: "Poppins", "black";
+    color: #171717;
+    font-weight: 900;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    -webkit-text-stroke: 5px #babcc9; /* толщина и цвет обводки */
+    text-stroke: 5px #babcc9; /* толщина и цвет обводки */
+    line-height: 350px;
+  }
+  p {
+    font-size: 32px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: #babcc9;
+  }
 }
