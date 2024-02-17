@@ -54,7 +54,7 @@ import { useAppSelector } from "../../redux/store";
 export default function PartiesList(): JSX.Element {
   const [selectedCategory, setSelectedCategory] = useState("Выбрать категорию");
   const [visibleStartIndex, setVisibleStartIndex] = useState(0);
-  const visibleCount = 4; // Количество элементов, отображаемых на странице одновременно
+  const visibleCount = 4; // Колличество вечеринок, которое нам надо
 
   const { parties } = useAppSelector((store) => store.party);
 
