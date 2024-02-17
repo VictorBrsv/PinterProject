@@ -17,8 +17,8 @@ const serverConfig = (app) => {
   app.use(express.text({ limit: "200mb" }));
   app.use(
     cors({
-      origin: "http://localhost:5173",
-      // origin: "https://pinter.fun",
+      // origin: "http://localhost:5173",
+      origin: "https://pinter.fun",
       credentials: true,
       methods: "GET, POST, PUT, DELETE, OPTIONS", // добавила методы PUT, DELETE
       allowedHeaders: "Content-Type",
