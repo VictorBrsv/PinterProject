@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles/Map.module.scss';
-import map from './styles/map_img.png';
+// import map from './styles/map_img.png';
 import Footer from '../footer/Footer';
 import MapComponent from './MapComponent';
 

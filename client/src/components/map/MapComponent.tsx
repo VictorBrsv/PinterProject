@@ -14,7 +14,7 @@ const places = [
   { id: 7, coordinate: [55.741643, 37.652854], name: 'Стимпанк бар' },
 ];
 
-const images = [...Array(26)].map((n, i) => {
+const images = [...Array(26)].map((_, i) => {
   const letter = String.fromCharCode(i + 97);
   return `https://img.icons8.com/ios-filled/2x/marker-${letter}.png`;
 });
