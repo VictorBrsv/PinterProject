@@ -33,6 +33,9 @@ router.get("/:partyId", async (req, res) => {
 router.post("/roomDialogue", async (req, res) => {
   try {
     const { user } = res.locals;
+    if (!user.name) {
+      return res.end();
+    }
     const {
       title,
       members,
@@ -82,6 +85,7 @@ router.post("/roomDialogue", async (req, res) => {
       room_dialogue_id: room.id,
       qa,
     });
+    console.log('test: ', test);
     const newRoom = await Room_Dialogue.findOne({
       where: { id: room.id },
       include: { model: Test }, 

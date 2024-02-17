@@ -4,13 +4,15 @@ import roomIcon1 from "./styles/roomIcons/room_icon1.svg";
 // import roomIcon3 from './styles/roomIcons/room_icon3.png';
 // import roomIcon4 from './styles/roomIcons/room_icon4.png';
 // import roomIcon5 from './styles/roomIcons/room_icon5.png';
-import styles from "../party/styles/Party.module.scss";
+import styles from "../party/styles/PartyPage.module.scss";
 import { Room } from "./types/RoomState";
 import RoomInfoWithTest from "./RoomInfoWithTest";
 import { useAppSelector } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 
 export default function RoomItems({ room }: { room: Room }): JSX.Element {
+  console.log(room.Test);
+  
   const [visible, setVisible] = useState(false);
   const { user } = useAppSelector((store) => store.auth);
   const { access_tables } = useAppSelector((store) => store.room);

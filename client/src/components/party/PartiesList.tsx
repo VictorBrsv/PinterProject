@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styles from './styles/Party.module.scss';
+// import styles from './styles/Party.module.scss';
+import styles from './styles/PartiesList.module.scss';
 import PartyItem from './PartyItem';
 import leftArr from './styles/arr_left.svg';
 import rightArr from './styles/arr_right.svg';
