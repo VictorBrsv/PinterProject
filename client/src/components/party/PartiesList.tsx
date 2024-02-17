@@ -53,16 +53,30 @@ import { useAppSelector } from "../../redux/store";
 
 export default function PartiesList(): JSX.Element {
   const [selectedCategory, setSelectedCategory] = useState("Выбрать категорию");
+  const [visibleStartIndex, setVisibleStartIndex] = useState(0);
+  const visibleCount = 4; // Количество элементов, отображаемых на странице одновременно
+
   const { parties } = useAppSelector((store) => store.party);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(event.target.value);
+    setVisibleStartIndex(0); // Сброс индекса при смене категории
   };
 
   const filteredParties =
     selectedCategory === "Выбрать категорию"
       ? parties
       : parties.filter((party) => party.category === selectedCategory);
+
+  const handlePrevClick = () => {
+    setVisibleStartIndex((prevIndex) => Math.max(0, prevIndex - visibleCount));
+  };
+
+  const handleNextClick = () => {
+    setVisibleStartIndex((prevIndex) => Math.min(filteredParties.length - visibleCount, prevIndex + visibleCount));
+  };
+
+  const visibleParties = filteredParties.slice(visibleStartIndex, visibleStartIndex + visibleCount);
 
   return (
     <div id="events" className={styles.parties__list}>
@@ -80,14 +94,14 @@ export default function PartiesList(): JSX.Element {
         </select>
       </div>
       <div className={styles.all__parties}>
-        {filteredParties.map((party) => (
+        {visibleParties.map((party) => (
           <PartyItem key={party.id} party={party} />
         ))}
       </div>
-                <div className={styles.btn__container}>
-                 <div><img src={leftArr} alt="" /></div>
-                 <div><img src={rightArr} alt="" /></div>
-           </div>
+      <div className={styles.btn__container}>
+        <div onClick={handlePrevClick}><img src={leftArr} alt="Previous" /></div>
+        <div onClick={handleNextClick}><img src={rightArr} alt="Next" /></div>
+      </div>
     </div>
   );
 }
