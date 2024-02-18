@@ -253,7 +253,7 @@ function ChatPage() {
       </div>
 
       <div className={styles.chat__body}>
-        <div  className={styles.messages}>
+        <div className={styles.messages}>
           {messages.map((message, index) => (
             <Message key={index} message={message} />
           ))}

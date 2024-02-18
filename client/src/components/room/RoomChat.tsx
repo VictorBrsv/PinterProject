@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles/RoomPage.module.scss';
 import { useNavigate } from 'react-router-dom';
-import Message from './Message';
+// import Message from './Message';
 
 export default function RoomChat(): JSX.Element {
     const nav = useNavigate()
@@ -18,9 +18,9 @@ export default function RoomChat(): JSX.Element {
             <div className={styles.chat__body}>
                 <div className={styles.messages}>
                     {/* <p>В данной комнате нет сообщений</p> */}
+                    {/* <Message />
                     <Message />
-                    <Message />
-                    <Message />
+                    <Message /> */}
                 </div>
                 <div>
                     <input type="text" placeholder='Ваше сообщение' />
