@@ -158,6 +158,12 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    img {
+        width: 655px;
+        height: 290px;
+        object-fit: cover;
+    }
     
     button {
         position: absolute;

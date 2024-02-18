@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require("bcrypt");
-const { User } = require('../../db/models');
+const { User, Party, Room_Dialogue, Group_Member } = require('../../db/models');
 const generateTokens = require("../../utils/authUtils");
 const cookiesConfig = require("../../config/cookiesConfig");
 
@@ -11,6 +11,34 @@ router.get('/', async (req, res) => {
         
     } catch ({ message }) {
         res.json({ message: 'Error while reading users' });
+    }
+})
+
+router.get('/profile/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const userParties = await Group_Member.findAll({
+            where: { user_id: userId },
+            include: { model: Room_Dialogue },
+            // include: [
+            //     { model: Room_Dialogue },
+            //     { model: Party },
+            // ]
+        });
+        console.log('userParties: ==========', userParties);
+
+        if (userParties && userParties.length >  0) {
+            const partyIds = userParties.map(userParty => userParty.Room_Dialogue.party_id);
+            const parties = await Party.findAll({ where: { id: partyIds } });
+            userParties[0].dataValues.parties = parties;
+            res.json(parties);
+            return;
+        } else {
+            res.json({ message: 'No user parties found' });
+        }
+        
+    } catch ({ message }) {
+        res.json({ message: 'Error while reading user parties'})
     }
 })
 

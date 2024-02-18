@@ -35,9 +35,10 @@ export default function PartyPage(): JSX.Element {
     if (user?.name) {
       setVisible(true);
     } else {
-      alert("Для создания комнаты необходимо войти в приложение");
+      alert("Для создания комнаты войдите в приложение или зарегистрируйтесь");
     }
   };
+
   return (
     // добавить картинку для отдельного мероприятия party.image
     <>
@@ -49,6 +50,7 @@ export default function PartyPage(): JSX.Element {
           alt="find your company"
         />
         <div className={styles.party_page__info}>
+          <img src={party?.image} alt="" />
           <button type="button" onClick={createRoomHandler}>
             Создать комнату
           </button>
