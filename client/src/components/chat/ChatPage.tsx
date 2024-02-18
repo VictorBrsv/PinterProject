@@ -169,12 +169,16 @@
 
 
 import React, { useState, useEffect } from 'react';
-import './styles/ChatPage.css'; 
+// import './styles/ChatPage.css';
+import styles from './styles/ChatPage.module.scss'; // Подключила модульный scss
+import { useNavigate } from 'react-router-dom';
+import Message from '../room/Message';
 
 function ChatPage() {
   const [ws, setWs] = useState<WebSocket | null>(null); // Правильно инициализируем состояние
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState('');
+  const nav = useNavigate();
 
   useEffect(() => {
     const newWs = new WebSocket('wss://pinter.fun/ws/');
@@ -214,21 +218,58 @@ function ChatPage() {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      // Здесь выполняется  логика отправки сообщения
+      sendMessage();
+    }
+  };
+
   return (
-    <div className="chat-container">
-      <h2>Чат</h2>
-      <div className="messages-container">
-        {messages.map((message, index) => (
-          <p key={index}>{message}</p>
-        ))}
+    // <div className="chat-container">
+    //   <h2>Чат</h2>
+    //   <div className="messages-container">
+    //     {messages.map((message, index) => (
+    //       <p key={index}>{message}</p>
+    //     ))}
+    //   </div>
+    //   <input
+    //     className="input-message"
+    //     value={input}
+    //     onChange={(e) => setInput(e.target.value)}
+    //     placeholder="Введите сообщение"
+    //   />
+    //   <button className="send-button" onClick={sendMessage}>Отправить</button>
+    // </div>
+    // ___________выше находится код Сережи
+
+    <div className={styles.chat}>
+      <div className={styles.chat__header}>
+        <h2>Чат встречи</h2>
+        <div>
+            <p>Тема: <span>Бизнес-ланч от Setters X Surf Coffee</span></p>
+        </div>
+        <h3 onClick={() => nav('/')}>На главную</h3>
       </div>
-      <input
-        className="input-message"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Введите сообщение"
-      />
-      <button className="send-button" onClick={sendMessage}>Отправить</button>
+
+      <div className={styles.chat__body}>
+        <div className={styles.messages}>
+          {messages.map((message, index) => (
+            <Message key={index} message={message} />
+          ))}
+        </div>
+        <div className={styles.send_message}>
+          <input
+            // className="input-message"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onBlur={sendMessage}
+            onKeyDown={handleKeyPress}
+            placeholder="Введите сообщение"
+          />
+          <button type="button" onClick={sendMessage}>Отправить</button>
+        </div>
+      </div>
     </div>
   );
 }

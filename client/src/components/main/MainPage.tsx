@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import video from './styles/1108706_1080p_4k_2k_3840x2160.mp4';
 import ThreeSteps from '../steps/ThreeSteps';
 import { HashLink } from 'react-router-hash-link';
+// import PartiesList2 from '../party/PartiesList copy';
 
 export default function MainPage(): JSX.Element {
   const nav = useNavigate();
@@ -34,6 +35,7 @@ export default function MainPage(): JSX.Element {
       </div>
       <About />
       <PartiesList />
+      {/* <PartiesList2 /> */}
       <Counter />
       <ThreeSteps />
       <Map />
