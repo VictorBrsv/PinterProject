@@ -8,8 +8,8 @@ import { useAppSelector } from "../../redux/store";
 import "slick-carousel/slick/slick.css"; // добавляю плавный слайдер
 import "slick-carousel/slick/slick-theme.css"; // добавляю плавный слайдер
 import Slider from "react-slick"; // добавляю плавный слайдер
-import NextArrow from './NextArrow'; // добавляю плавный слайдер
-import PrevArrow from './PrevArrow';
+// import NextArrow from './NextArrow'; // добавляю плавный слайдер
+// import PrevArrow from './PrevArrow';
 
 export default function PartiesList2(): JSX.Element {
   const [selectedCategory, setSelectedCategory] = useState("Выбрать категорию");

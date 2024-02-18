@@ -1,5 +1,5 @@
 import React from 'react';
-import rightArr from './styles/arr_right.svg';
+// import rightArr from './styles/arr_right.svg';
 import "slick-carousel/slick/slick.css"; // добавляю плавный слайдер
 import "slick-carousel/slick/slick-theme.css"; // добавляю плавный слайдер
 
