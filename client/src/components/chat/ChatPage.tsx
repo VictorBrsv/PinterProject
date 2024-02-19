@@ -171,14 +171,24 @@
 import React, { useState, useEffect } from 'react';
 // import './styles/ChatPage.css';
 import styles from './styles/ChatPage.module.scss'; // Подключила модульный scss
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Message from '../room/Message';
+import { useAppSelector } from '../../redux/store';
 
 function ChatPage() {
   const [ws, setWs] = useState<WebSocket | null>(null); // Правильно инициализируем состояние
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState('');
   const nav = useNavigate();
+
+  const { rooms } = useAppSelector((store) => store.room)
+  const { roomId } = useParams();
+
+  let room;
+  if (roomId) {
+    room = rooms.find((room) => room.id === +roomId)
+  }
+  
 
   useEffect(() => {
     const newWs = new WebSocket('wss://pinter.fun/ws/');
@@ -247,7 +257,7 @@ function ChatPage() {
       <div className={styles.chat__header}>
         <h2>Чат встречи</h2>
         <div>
-            <p>Тема: <span>Бизнес-ланч от Setters X Surf Coffee</span></p>
+            <p>Тема: <span>{room?.title}</span></p>
         </div>
         <h3 onClick={() => nav('/')}>На главную</h3>
       </div>

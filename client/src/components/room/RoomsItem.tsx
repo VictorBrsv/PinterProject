@@ -31,7 +31,7 @@ export default function RoomItems({ room }: { room: Room }): JSX.Element {
       alert("Это не ваши люди");
     } else {
       if (isAccess?.access) {
-        navigate("/chat");
+        navigate(`/chat/${room.id}`);
       } else if (isAccess?.access === false) {
         alert("Вы не можете войти в эту комнату");
       } else {
