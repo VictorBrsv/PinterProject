@@ -11,7 +11,6 @@ import { useAppSelector } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 
 export default function RoomItems({ room }: { room: Room }): JSX.Element {
-  console.log(room.Test);
   
   const [visible, setVisible] = useState(false);
   const { user } = useAppSelector((store) => store.auth);

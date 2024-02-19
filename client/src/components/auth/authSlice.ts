@@ -50,7 +50,6 @@ const authSlice = createSlice({
       })
       .addCase(updProfile.fulfilled, (state, action) => {
         state.user = action.payload;
-        // console.log('upd: ', action.payload);
       });
   },
 });
