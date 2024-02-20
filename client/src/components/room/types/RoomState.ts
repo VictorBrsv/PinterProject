@@ -36,3 +36,5 @@ export type RoomTest = {
   thirdAnswer: string;
   roomId: number;
 };
+
+// export type RoomId = Room['id'];

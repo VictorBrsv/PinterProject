@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import roomIcon1 from "./styles/roomIcons/room_icon1.svg";
-// import roomIcon2 from './styles/roomIcons/room_icon2.png';
-// import roomIcon3 from './styles/roomIcons/room_icon3.png';
-// import roomIcon4 from './styles/roomIcons/room_icon4.png';
-// import roomIcon5 from './styles/roomIcons/room_icon5.png';
 import styles from "../party/styles/PartyPage.module.scss";
 import { Room } from "./types/RoomState";
 import RoomInfoWithTest from "./RoomInfoWithTest";
 import { useAppSelector } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
+import loginIcon from './styles/roomIcons/room_login_icon.svg';
 
 export default function RoomItems({ room }: { room: Room }): JSX.Element {
+  console.log(room.Test);
+  // console.log(room);
   
   const [visible, setVisible] = useState(false);
   const { user } = useAppSelector((store) => store.auth);
@@ -43,7 +41,9 @@ export default function RoomItems({ room }: { room: Room }): JSX.Element {
     <div className={styles.rooms__container}>
       <div className={styles.item} onClick={handleRoomAccess}>
         <h4>Комната # {room.id}</h4>
-        <img src={roomIcon1} alt="enter the room1" />
+        <div style={{ backgroundColor: color }}>
+          <img src={loginIcon} alt="enter the room" />
+        </div>
       </div>
       {visible && <RoomInfoWithTest hide={hide} room={room} />}
     </div>
