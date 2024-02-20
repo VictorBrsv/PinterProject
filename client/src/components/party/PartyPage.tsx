@@ -17,7 +17,6 @@ export default function PartyPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const nav = useNavigate();
   
-
   let party;
   if (partyId) {
     party = parties.find((party) => party.id === +partyId);
@@ -38,6 +37,9 @@ export default function PartyPage(): JSX.Element {
       alert("Для создания комнаты войдите в приложение или зарегистрируйтесь");
     }
   };
+
+  const bgDivColors = ['#3C4D34', '#422222', '#242E3C', '#3B2643', '#3E090F'];
+
 
   return (
     // добавить картинку для отдельного мероприятия party.image
@@ -65,8 +67,8 @@ export default function PartyPage(): JSX.Element {
           <h1>Выбрать комнату</h1>
           {user?.name ? (
               <div className={styles.rooms__container}>
-                {rooms.map((room) => (
-                  <RoomItems key={room.id} room={room} />
+                {rooms.map((room, index) => (
+                  <RoomItems key={room.id} room={room} color={bgDivColors[index % bgDivColors.length]} />
                 ))}
               </div>
             ) : (

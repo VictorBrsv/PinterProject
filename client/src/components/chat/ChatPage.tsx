@@ -168,6 +168,7 @@
 // // export default ChatPage;
 
 
+
 import React, { useState, useEffect } from 'react';
 // import './styles/ChatPage.css';
 import styles from './styles/ChatPage.module.scss'; // Подключила модульный scss
@@ -175,21 +176,28 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Message from '../room/Message';
 import { useAppSelector } from '../../redux/store';
 
-function ChatPage() {
+function ChatPage(): JSX.Element {
   const [ws, setWs] = useState<WebSocket | null>(null); // Правильно инициализируем состояние
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState('');
   const nav = useNavigate();
+  const [roomTitle, setRoomTitle] = useState<string | null>(null);
 
   const { rooms } = useAppSelector((store) => store.room)
   const { roomId } = useParams();
+  // console.log(rooms);
 
-  let room;
-  if (roomId) {
-    room = rooms.find((room) => room.id === +roomId)
-  }
+  // let room;
+  useEffect(() => {
+    if (roomId) {
+      const room = rooms.find((room) => room.id === +roomId);
+      if (room) {
+        setRoomTitle(room.title);
+      }
+    }
+  }, [roomId, rooms])
+
   
-
   useEffect(() => {
     const newWs = new WebSocket('wss://pinter.fun/ws/');
 
@@ -230,8 +238,7 @@ function ChatPage() {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      // Здесь выполняется  логика отправки сообщения
-      sendMessage();
+      sendMessage(); // Здесь выполняется  логика отправки сообщения на enter
     }
   };
 
@@ -254,33 +261,35 @@ function ChatPage() {
     // ___________выше находится код Сережи
 
     <div className={styles.chat}>
-      <div className={styles.chat__header}>
-        <h2>Чат встречи</h2>
-        <div>
-            <p>Тема: <span>{room?.title}</span></p>
+        <div className={styles.chat__header}>
+          <h2>Чат встречи</h2>
+          <div>
+            <p>Тема: <span>{roomTitle || 'Безымянный чат'}</span></p>
+          </div>
+          <div className={styles.chat__header__nav}>
+            <p onClick={() => nav(-1)}>Назад</p>
+            <h3 onClick={() => nav('/')}>На главную</h3>
+          </div>
         </div>
-        <h3 onClick={() => nav('/')}>На главную</h3>
-      </div>
 
-      <div className={styles.chat__body}>
-        <div className={styles.messages}>
-          {messages.map((message, index) => (
-            <Message key={index} message={message} />
-          ))}
-        </div>
-        <div className={styles.send_message}>
-          <input
-            // className="input-message"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onBlur={sendMessage}
-            onKeyDown={handleKeyPress}
-            placeholder="Введите сообщение"
-          />
-          <button type="button" onClick={sendMessage}>Отправить</button>
+        <div className={styles.chat__body}>
+          <div className={styles.messages}>
+            {messages.map((message, index) => (
+              <Message key={index} message={message} />
+            ))}
+          </div>
+          <div className={styles.send_message}>
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onBlur={sendMessage}
+              onKeyDown={handleKeyPress}
+              placeholder="Введите сообщение"
+            />
+            <button type="button" onClick={sendMessage}>Отправить</button>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
 

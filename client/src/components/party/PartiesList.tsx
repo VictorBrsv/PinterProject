@@ -13,8 +13,6 @@ export default function PartiesList(): JSX.Element {
   const visibleCount = 4; // Количество вечеринок, которое нам надо
 
   const { parties } = useAppSelector((store) => store.party);
-  console.log(parties);
-  
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(event.target.value);
