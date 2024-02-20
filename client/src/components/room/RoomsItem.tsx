@@ -8,7 +8,6 @@ import loginIcon from './styles/roomIcons/room_login_icon.svg';
 
 export default function RoomItems({ room, color }: { room: Room, color: string }): JSX.Element {
   console.log(room.Test);
-  // console.log(room);
   
   const [visible, setVisible] = useState(false);
   const { user } = useAppSelector((store) => store.auth);
