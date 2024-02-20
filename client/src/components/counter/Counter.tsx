@@ -1,12 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 import styles from "./styles/Counter.module.scss";
+import axios from "axios";
 
 export default function Counter(): JSX.Element {
   const counterRef = useRef(null);
   const [isCounting, setIsCounting] = useState(false);
+  const [allUsersCount, setAllUsersCount] = useState(0);
 
   useEffect(() => {
+    const allUsers = async () => {
+      const { data } = await axios("/api/auth/allUsers");
+      setAllUsersCount(data);
+    };
+    allUsers();
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -16,7 +23,7 @@ export default function Counter(): JSX.Element {
           }
         });
       },
-      { threshold: 0.7 }, // Начинать анимацию, когда элемент видим на   10%
+      { threshold: 0.7 }, // Начинать анимацию, когда элемент видим на   70%
     );
 
     if (counterRef.current) {
@@ -26,7 +33,7 @@ export default function Counter(): JSX.Element {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [allUsersCount, counterRef]);
 
   return (
     <div className={styles.counter} ref={counterRef}>
@@ -34,7 +41,7 @@ export default function Counter(): JSX.Element {
         <CountUp
           className={styles.count}
           start={0}
-          end={2100}
+          end={allUsersCount + 2100}
           duration={2} // Длительность анимации в секундах
           separator="."
           decimals={0}

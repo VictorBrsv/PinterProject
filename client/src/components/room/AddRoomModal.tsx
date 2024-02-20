@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from "./styles/AddRoomModal.module.scss";
-import { useAppDispatch } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { addRoomWithTest } from "./roomSlice";
+import ScrollableDatalist from "./ScrollableDatalist";
 
 export default function AddRoomModal({
   hide,
@@ -20,6 +21,20 @@ export default function AddRoomModal({
   const [firstAnswer, setFirstAnswer] = useState("");
   const [secondAnswer, setSecondAnswer] = useState("");
   const [thirdAnswer, setThirdAnswer] = useState("");
+
+  const allTestThisParty = useAppSelector((store) => store.room);
+  const data = allTestThisParty.rooms.map((room) => room.Test);
+  const allQuestions = data.reduce((questions, room) => {
+    const roomQuestions = Object.values(room.qa).filter(
+      (item) => typeof item === "object",
+    );
+    return [...questions, ...roomQuestions];
+  }, []);
+
+  const questionsWithoutAnswers = allQuestions.map(
+    (question: { question: string }) => question.question,
+  );
+
   const dispatch = useAppDispatch();
 
   const checkHandler: React.ChangeEventHandler<HTMLInputElement> = (): void => {
@@ -93,13 +108,28 @@ export default function AddRoomModal({
           <div className={styles.add_room__questions}>
             <h2>Придумайте три вопроса для входа в вашу комнату</h2>
             <div className={styles.qa}>
-              <input
+              <ScrollableDatalist
+                id="questions1"
+                options={questionsWithoutAnswers}
+                value={firstQuestion}
+                onChange={(e) => setFirstQuestion(e.target.value)}
+              />
+              {/* <input
                 value={firstQuestion}
                 onChange={(e) => setFirstQuestion(e.target.value)}
                 type="text"
-                placeholder="Вопрос 1"
+                placeholder="Вопрос  1"
+                list="questions"
                 required
-              />
+              /> */}
+
+              {/* <datalist id="questions" style={{ overflow: "auto" }}>
+                {questionsWithoutAnswers.map(
+                  (question: string, index: number) => (
+                    <option key={index} value={question} />
+                  ),
+                )}
+              </datalist> */}
               <select
                 onChange={(e) => {
                   setFirstAnswer(e.target.value);
@@ -113,13 +143,19 @@ export default function AddRoomModal({
               </select>
             </div>
             <div className={styles.qa}>
-              <input
+              <ScrollableDatalist
+                id="questions2"
+                options={questionsWithoutAnswers}
+                value={secondQuestion}
+                onChange={(e) => setSecondQuestion(e.target.value)}
+              />
+              {/* <input
                 value={secondQuestion}
                 onChange={(e) => setSecondQuestion(e.target.value)}
                 type="text"
                 placeholder="Вопрос 2"
                 required
-              />
+              /> */}
               <select
                 onChange={(e) => {
                   setSecondAnswer(e.target.value);
@@ -133,13 +169,19 @@ export default function AddRoomModal({
               </select>
             </div>
             <div className={styles.qa}>
-              <input
+              <ScrollableDatalist
+                id="questions3"
+                options={questionsWithoutAnswers}
+                value={thirdQuestion}
+                onChange={(e) => setThirdQuestion(e.target.value)}
+              />
+              {/* <input
                 value={thirdQuestion}
                 onChange={(e) => setThirdQuestion(e.target.value)}
                 type="text"
                 placeholder="Вопрос 3"
                 required
-              />
+              /> */}
               <select
                 onChange={(e) => {
                   setThirdAnswer(e.target.value);

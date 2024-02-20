@@ -4,6 +4,15 @@ const { User, Party, Access_Table } = require("../../db/models");
 const generateTokens = require("../../utils/authUtils");
 const cookiesConfig = require("../../config/cookiesConfig");
 
+router.get("/allUsers", async (req, res) => {
+  try {
+    const users = await User.count();
+    res.json(users);
+  } catch ({ message }) {
+    res.json({ message: "Error while reading users" });
+  }
+});
+
 router.post("/sign-up", async (req, res) => {
   try {
     const { name, email, password } = req.body.data;
@@ -21,7 +30,12 @@ router.post("/sign-up", async (req, res) => {
 
     if (userInDb) {
       const { accessToken, refreshToken } = generateTokens({
-        user: { id: userInDb.id, email: userInDb.email, name: userInDb.name, password: userInDb.password },
+        user: {
+          id: userInDb.id,
+          email: userInDb.email,
+          name: userInDb.name,
+          password: userInDb.password,
+        },
       });
 
       res
@@ -62,7 +76,12 @@ router.post("/sign-in", async (req, res) => {
       return;
     }
     const { accessToken, refreshToken } = generateTokens({
-      user: { id: userInDb.id, email: userInDb.email, name: userInDb.name, password: userInDb.password },
+      user: {
+        id: userInDb.id,
+        email: userInDb.email,
+        name: userInDb.name,
+        password: userInDb.password,
+      },
     });
     // await Party.create({
     //   category: "ресторан",
@@ -88,7 +107,6 @@ router.post("/sign-in", async (req, res) => {
   }
 });
 
-
 router.get("/logout", (req, res) => {
   const { access } = req.cookies;
 
@@ -107,7 +125,12 @@ router.get("/check", async (req, res) => {
     const userInDb = await User.findOne({ where: { id: user?.id } });
     if (user && userInDb) {
       res.status(200).json({
-        user: { id: user.id, email: user.email, name: user.name, password: user.password },
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          password: user.password,
+        },
       });
     } else {
       res.status(400).json({ user: false });
