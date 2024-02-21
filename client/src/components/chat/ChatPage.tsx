@@ -161,6 +161,7 @@ const ChatPage = (): JSX.Element => {
   const [allMessages, setAllMessages] = useState<any[]>([]);
   const [roomTitle, setRoomTitle] = useState<string | null>(null);
   const [roomDescription, setRoomDescription] = useState<string | null>(null);
+  const [users, setUsers] = useState<User[]>([]);
 
   const { roomId } = useParams();
   const nav = useNavigate();
@@ -188,11 +189,24 @@ const ChatPage = (): JSX.Element => {
       try {
         const { data } = await axios(`/api/message/${roomId}`);
  
-        console.log('data messages user: ', data.messages[0].user);
+        // console.log('data messages user: ', data.messages[0].user);
+        // console.log('data messages: ', data.message);
+
+        // const users = data.messages.map(message => message.user);
+        const users = Object.values(data.messages.reduce((acc: any, message: any) => {
+          // Проверяем, есть ли уже такой пользователь в аккумуляторе
+          if (!acc[message.user.id]) {
+            // Если пользователь еще не добавлен, добавляем его в аккумулятор
+            acc[message.user.id] = message.user;
+          }
+          return acc;
+        }, {}));
+        console.log('data messages users: ', users);
 
         setAllMessages(data.messages);
         setRoomTitle(data.room.title);
         setRoomDescription(data.room.description);
+        setUsers(users);
 
       } catch (error) {
         console.error(error)
@@ -237,7 +251,12 @@ console.log(allMessages);
   return (
     <div className={styles.chat}>
       <div className={styles.chat__header}>
-        <h2>Чат встречи</h2>
+        <div className={styles.users}>
+          <h2>Чат встречи</h2>
+          {users && users.map((user) => (
+            <img src={user.image} alt="" />
+          ))}
+        </div>
         <div className={styles.chat__header__info}>
           <p>Тема: <span className={styles.title}>{roomTitle || 'Безымянный чат'}</span></p>
           <p>Описание: <span>{roomDescription}</span></p>
