@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './styles/Map.module.scss';
 import Footer from '../footer/Footer';
 import MapComponent from './MapComponent';
-import { center, places, images } from '../map2/constans';
+import { center, places, images } from './constans';
 
 interface Place {
   id: number;
