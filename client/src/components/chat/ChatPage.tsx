@@ -172,7 +172,7 @@
 import React, { useState, useEffect } from 'react';
 // import './styles/ChatPage.css';
 import styles from './styles/ChatPage.module.scss'; // Подключила модульный scss
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Message from '../room/Message';
 import { useAppSelector } from '../../redux/store';
 
@@ -229,12 +229,29 @@ function ChatPage(): JSX.Element {
     };
   }, []);
 
+  // _______________код Сережи
   const sendMessage = async () => {
     if (input.trim() && ws) {
       ws.send(input);
       setInput('');
     }
   };
+  // _______________код Сережи
+
+  // В вашем компоненте ChatPage
+  // const sendMessage = async () => {
+  //   if (input.trim() && ws) {
+  //     const data = {
+  //       message: input,
+  //       user: {
+  //         id: user?.id,
+  //         name: user?.name,
+  //       }
+  //     };
+  //     ws.send(JSON.stringify(data));
+  //     setInput('');
+  //   }
+  // };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {

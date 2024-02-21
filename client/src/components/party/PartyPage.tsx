@@ -53,15 +53,22 @@ export default function PartyPage(): JSX.Element {
         />
         <div className={styles.party_page__info}>
           <img src={party?.image} alt="" />
-          <button type="button" onClick={createRoomHandler}>
+          {/* <button type="button" onClick={createRoomHandler}>
             Создать комнату
-          </button>
+          </button> */}
+
           <div className={styles.time_place}>
             <p>{`${party?.time} | ${party?.date}`}</p>
             <p>{party?.title}</p>
           </div>
         </div>
-        <h3>{party?.description}</h3>
+
+        <div className={styles.party_page__description}>
+          <h3>{party?.description}</h3>
+          <button type="button" onClick={createRoomHandler}>
+            Создать комнату
+          </button>
+        </div>
 
         <div className={styles.choose_room}>
           <h1>Выбрать комнату</h1>
@@ -72,7 +79,7 @@ export default function PartyPage(): JSX.Element {
                 ))}
               </div>
             ) : (
-              <div className={styles.rooms__container}>
+              <div className={styles.warning}>
                 <h5 onClick={() => nav("/auth/registration")}>Для просмотра комнат войдите <br />в приложение или зарегистрируйтесь</h5>
               </div>
             )}

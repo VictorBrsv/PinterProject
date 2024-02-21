@@ -14,6 +14,7 @@ export default function Authorization(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+
   const onHandleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch(authorization({ email, password }))
@@ -22,7 +23,7 @@ export default function Authorization(): JSX.Element {
           setError(data.error.message);
           return;
         }
-        navigate("/");
+        navigate('/');
       })
       .catch((error) => {
         console.log(error);

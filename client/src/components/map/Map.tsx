@@ -1,44 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles/Map.module.scss';
-// import map from './styles/map_img.png';
 import Footer from '../footer/Footer';
 import MapComponent from './MapComponent';
+import { center, places, images } from '../map2/constans';
+
+interface Place {
+  id: number;
+  coordinate: number[];
+  name: string;
+  time?: string;
+}
 
 export default function Map(): JSX.Element {
+  const [searchValue, setSearchValue] = useState('');
+  const [mapCenter, setMapCenter] = useState(center);
+  const [searchResults, setSearchResults] = useState<Place[]>([]);
 
-    return (
-        <>
-            <div className={styles.map__container}>
-                <h1>Найти место</h1>
-                
-                <div className={styles.content}>
-                    <div className={styles.search}>
-                        <input type="text" placeholder='Введите адрес' />
-                        <p>Результаты поиска</p>
-                        <div className={styles.search__results}>
-                            <div>
-                                <p>Адрес бара номер один</p>
-                                <p className={styles.on_map}>Показать на карте</p>
-                            </div>
-                            <div>
-                                <p>Адрес бара номер два</p>
-                                <p className={styles.on_map}>Показать на карте</p>
-                            </div>
-                            <div>
-                                <p>Адрес бара номер три</p>
-                                <p className={styles.on_map}>Показать на карте</p>
-                            </div>
-                        </div>
-                    </div>
+  let debounceTimeout: NodeJS.Timeout | null = null;
 
-                    <div className={styles.map}>
-                        {/* <img src={map} alt="map img" /> */}
-                        <MapComponent />
-                        <div className={styles.map__overlay}></div>
-                    </div>
+  const handleSearchChange = (value: string) => {
+    setSearchValue(value);
+
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
+
+    debounceTimeout = setTimeout(() => {
+      if (value === '') {
+        setSearchResults([]);
+        setMapCenter(center);
+      } else {
+        const filteredResults = places.filter((place) =>
+          place.name.toLowerCase().startsWith(value.toLowerCase())
+        );
+
+        if (filteredResults.length > 0) {
+          setMapCenter(filteredResults[0].coordinate);
+          setSearchResults(filteredResults);
+        } else {
+          setMapCenter(center);
+          setSearchResults([]);
+        }
+      }
+    }, 100);
+  };
+
+  return (
+    <>
+      <div className={styles.map__container}>
+        <h1>Найти место</h1>
+
+        <div className={styles.content}>
+          <div className={styles.search}>
+            <input
+              type='text'
+              placeholder='Введите адрес'
+              value={searchValue}
+              onChange={(e) => handleSearchChange(e.target.value)}
+            />
+            <p>Результаты поиска</p>
+            <div className={styles.search__results}>
+              {searchResults.slice(0, 5).map((result) => (
+                <div key={result.id}>
+                  <p>{result.name}</p>
+                  <p className={styles.on_map}>{result.time}</p>
                 </div>
+              ))}
             </div>
-            <Footer />
-        </>
-    )
+          </div>
+          <div className={styles.map}>
+            <MapComponent center={mapCenter} places={places} images={images} />
+            <div className={styles.map__overlay}></div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 }
