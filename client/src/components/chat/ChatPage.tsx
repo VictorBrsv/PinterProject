@@ -161,7 +161,7 @@ const ChatPage = (): JSX.Element => {
   const [allMessages, setAllMessages] = useState<any[]>([]);
   const [roomTitle, setRoomTitle] = useState<string | null>(null);
   const [roomDescription, setRoomDescription] = useState<string | null>(null);
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
 
   const { roomId } = useParams();
   const nav = useNavigate();

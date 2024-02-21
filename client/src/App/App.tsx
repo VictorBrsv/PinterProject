@@ -6,7 +6,7 @@ import Navigation from "../components/navigation/Navigation";
 import Error from "../components/404/Error";
 import Registration from "../components/auth/Registration";
 import Authorization from "../components/auth/Authorization";
-import { useAppDispatch, useAppSelector } from "../redux/store";
+import { useAppDispatch } from "../redux/store";
 import { checkAuth } from "../components/auth/authSlice";
 import MainPage from "../components/main/MainPage";
 import PartiesList from "../components/party/PartiesList";
