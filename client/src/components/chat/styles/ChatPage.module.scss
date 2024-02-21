@@ -37,6 +37,16 @@
             font-weight: 500;
         }
 
+        &__info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .title {
+            background-color: #BFBFBF;
+        }
+
         span {
             color: #fcfcfc;
             margin-left: 5px;

@@ -24,6 +24,17 @@
     border-bottom-left-radius: 0;
     border: .5px solid #7e7e7e;
 
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h6 {
+            color: #7e7e7e;
+            font-weight: 500;
+        }
+    }
+
     p, h4 {
         color: black;
         text-align: start;
