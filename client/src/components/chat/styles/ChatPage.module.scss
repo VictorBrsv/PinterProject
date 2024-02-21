@@ -13,7 +13,6 @@
         left: 3%;
         height: 100px;
         width: 91.5%;
-
         background-color: #F1F1F1;
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
@@ -23,6 +22,18 @@
         align-items: start;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         gap: 30px;
+
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        // доделать
+        .users {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
         h2, div, p, span {
             // background-color: transparent;
@@ -35,6 +46,16 @@
             margin-top: 10px;
             font-size: 24px;
             font-weight: 500;
+        }
+
+        &__info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .title {
+            background-color: #BFBFBF;
         }
 
         span {

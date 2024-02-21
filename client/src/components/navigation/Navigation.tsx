@@ -33,9 +33,9 @@ export default function Navigation(): JSX.Element {
               </HashLink>
             </li>
             <li className={styles.item}>
-              <NavLink className="nav__button" to="/chat">
-                Чат
-              </NavLink>
+              <HashLink className="nav__button" smooth to="#three_steps">
+                Как начать
+              </HashLink>
             </li>
             <li className={styles.item}>
               <HashLink className="nav__button" smooth to="#footer_contacts">
