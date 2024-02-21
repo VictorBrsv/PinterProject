@@ -63,12 +63,12 @@ router.post("/sign-in", async (req, res) => {
       where: { email },
     });
     if (!userInDb) {
-      res.json({ message: "Такого юзера не существует или пароль неверный" });
+      res.json({ message: "Такого пользователя не существует или пароль неверный" });
       return;
     }
     const compare = await bcrypt.compare(password, userInDb.password);
     if (!compare) {
-      res.json({ message: "Такого юзера не существует или пароль неверный" });
+      res.json({ message: "Такого пользователя не существует или пароль неверный" });
       return;
     }
     if (!email || !password) {

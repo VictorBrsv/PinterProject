@@ -43,9 +43,10 @@
         height: 500px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: start;
 
         .search {
+            margin-top: 100px;
             display: flex;
             flex-direction: column;
             text-align: start;
@@ -75,7 +76,7 @@
                     margin-top: 10px;
                     text-decoration: underline #7e7e7e;
                     text-underline-offset: 0.5em;
-                    cursor: pointer;
+                    // cursor: pointer;
                 }
             }
         }

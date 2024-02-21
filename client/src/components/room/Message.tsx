@@ -4,7 +4,7 @@ import userLogo from './styles/user_message_logo.png';
 import { useAppSelector } from '../../redux/store';
 
 export default function Message({ message }: { message: string }): JSX.Element {
-    const { user } = useAppSelector(state => state.auth);
+    const { user } = useAppSelector(store => store.auth);
     const userAvatar = user?.image || userLogo;
     const userName = user?.name || 'Bobr Curva'
 

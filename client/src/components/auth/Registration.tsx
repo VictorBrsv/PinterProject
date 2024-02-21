@@ -23,7 +23,7 @@ export default function Registration(): JSX.Element {
             setError(data.error.message);
             return;
           }
-          navigate("/");
+          navigate('/');
         },
       )
       .catch((error: any) => {
